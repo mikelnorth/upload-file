@@ -69,7 +69,6 @@ export default {
       this.isOver = true; // add class on drag over
     });
     this.$refs.drag?.addEventListener('dragleave', e => {
-      console.log('drag')
       if (e.relatedTarget.className.includes('inside-upload-box')) {
         return; // This prevents a flicker caused when dragLeave event is fired by hovering over a child element
         // https://stackoverflow.com/questions/12945307/jquery-drag-and-drop-flickering-on-hover-webkit-only
@@ -120,7 +119,6 @@ export default {
       const base64 = await this.toBase64(files[0])
       const { data } = await axios.post('http://localhost:8000/api/image', { base64 })
       this.uploading = []
-      console.log('call updateFiles')
       this.emitUpdateFiles(data.url)
     },
     toBase64(file){
@@ -143,7 +141,6 @@ export default {
       return isValidSize;
     },
     emitUpdateFiles(fileURL) {
-      console.log('emit')
       this.$emit('updateFiles', fileURL)
     }
   },

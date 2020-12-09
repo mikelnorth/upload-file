@@ -16,11 +16,10 @@ exports.imagePost = async (req, res, next) => {
   };
   axios(config)
   .then(function (response) {
-    console.log(JSON.stringify(response.data));
     res.status(200).send(response.data)
   })
   .catch(function (error) {
-    console.log(error);
+    console.error(error);
     res.status(400).send(error)
   });
 };
